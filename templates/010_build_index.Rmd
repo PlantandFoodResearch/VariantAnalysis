@@ -1,0 +1,4 @@
+
+```{build_index, engine=bash}
+bwa index -a bwtsw ${genome_file} -p genome.index
+```

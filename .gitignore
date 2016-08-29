@@ -1,0 +1,6 @@
+*.swp
+.ipynb_checkpoints
+.nextflow*
+work
+data/*.fq.gz
+data/*.fastq.gz

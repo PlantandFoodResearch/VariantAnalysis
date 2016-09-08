@@ -67,7 +67,6 @@ genome_file = file(params.genome)
  */
 
 process build_index {
-    tag 'build_index'
     module = params.build_index_module
 
     input:
@@ -107,10 +106,9 @@ Channel
  */
 
 process align{
-    tag label_align
     module = params.align_module
 
-    publishDir "${params.output_dir}/220.${tag}", mode: 'copy', overwrite: true
+    publishDir "${params.output_dir}/220.${label_align}", mode: 'copy', overwrite: true
 
     input:
     file genome_file from genome_file
@@ -118,7 +116,7 @@ process align{
     set pair_id, file(reads) from read_pairs
 
     output:
-    set pair_id, file("${tag}_${pair_id}.bam") into bam_align
+    set pair_id, file("${label_align}_${pair_id}.bam") into bam_align
 
     script:
     """
@@ -135,17 +133,16 @@ process align{
  */
 
 process mark_dup{
-    tag label_mark_dup
     module = params.mark_dup_module
 
     input:
     set pair_id, file(bwa_mem) from bam_align
 
     output:
-    set pair_id, file("${tag}_${pair_id}.bam") into bwa_mdup_bam
-    set pair_id, file("${tag}_${pair_id}.bai") into bwa_mdup_bai
+    set pair_id, file("${label_mark_dup}_${pair_id}.bam") into bwa_mdup_bam
+    set pair_id, file("${label_mark_dup}_${pair_id}.bai") into bwa_mdup_bai
 
-    publishDir "${params.output_dir}/230.${tag}", mode: 'copy', overwrite: true
+    publishDir "${params.output_dir}/230.${label_mark_dup}", mode: 'copy', overwrite: true
 
     script:
     """
@@ -172,7 +169,6 @@ process mark_dup{
  */
 
 process add_read_group_id{
-    tag label_add_read_group_id
 
     module = params.add_read_group_id_module
 
@@ -181,10 +177,10 @@ process add_read_group_id{
     set pair_id, file(bwa_mdup_bai) from bwa_mdup_bai
 
     output:
-    set pair_id, file("${tag}_${pair_id}.bam") into aligned_bam
-    set pair_id, file("${tag}_${pair_id}.bai") into aligned_bai
+    set pair_id, file("${label_add_read_group_id}_${pair_id}.bam") into aligned_bam
+    set pair_id, file("${label_add_read_group_id}_${pair_id}.bai") into aligned_bai
 
-    publishDir "${params.output_dir}/240.${tag}", mode: 'copy', overwrite: true
+    publishDir "${params.output_dir}/240.${label_add_read_group_id}", mode: 'copy', overwrite: true
 
     script:
     """

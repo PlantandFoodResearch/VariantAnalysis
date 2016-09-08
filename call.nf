@@ -57,6 +57,20 @@ Channel
 label_variant_calling_gatk = 'variant_calling_gatk'
 
 
+process index_faidx_unzip{
+    input:
+    file genome from genome_file
+
+    output:
+    file 'kiwitest.fasta' into genome_raw
+
+    """
+    gunzip -c ${genome} > kiwitest.fasta
+    """
+
+}
+
+
 process gatk_haplotype_calling{
 
     module = params.variant_calling_gatk_module
@@ -64,7 +78,7 @@ process gatk_haplotype_calling{
     publishDir "${params.publish_dir}/260.${tag}"
 
     input:
-    file genome from genome_file
+    file genome from genome_raw
     file bwa_mdup_rg_bam  from aligned_bam
     file bwa_mdup_rg_bai  from aligned_bai
 

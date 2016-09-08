@@ -20,7 +20,7 @@ The pipeline is preconfigured with test data. INorder to tst whether the pipelin
 
 ```
 
-./nextflow run hdzierz/VariantAnalysis/align.nf [--help]
+./nextflow run  PlantandFoodResearch/VariantAnalysis/align.nf [--help]
 
 ```
 
@@ -62,7 +62,7 @@ $baseDir = $HOME/.nextflow/assets/hdzierz/VariantAnalysisFB
 Typical run with the test data copied to $HOME/KiwiTestData
 
 ```
-./nextflow run hdzierz/VariantAnalysis/align.nf --input_dir '$HOME/KiwiTestData/' --genome '$HOME/KiwiTestData/kiwitest.fasta'
+./nextflow run  PlantandFoodResearch/VariantAnalysis/align.nf --input_dir '$HOME/KiwiTestData/' --genome '$HOME/KiwiTestData/kiwitest.fasta'
 ```
 
 

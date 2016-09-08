@@ -20,7 +20,7 @@ The pipeline is preconfigured with test data. INorder to tst whether the pipelin
 
 ```
 
-./nextflow run hdzierz/VariantAnalysis/align.nf
+./nextflow run hdzierz/VariantAnalysis/align.nf [--help]
 
 ```
 

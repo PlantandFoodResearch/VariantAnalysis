@@ -2,13 +2,25 @@
 
 ## How to use the align pipeline
 
+**Step 0:**
+
+```
+curl -fsSL get.nextflow.io | bash 
+```
+
+And add NXF_HOME to your .bashrc in case the space in your home directory is restricted:
+
+```
+export NXF_HOME=/path/to/.nextflow
+```
+
 **Step1:** Run test
 
 The pipeline is preconfigured with test data. INorder to tst whether the pipeline runs through call vc_pipe without command line parameters:
 
 ```
 
-nextflow hdzierz/VariantAnalysis/align.nf
+./nextflow run hdzierz/VariantAnalysis/align.nf
 
 ```
 
@@ -47,10 +59,10 @@ config: Location of config file ["$baseDir/design.config"]
 $baseDir = $HOME/.nextflow/assets/hdzierz/VariantAnalysisFB
 ```
 
-Typical run with data sitting in $HOME/KiwiTestData
+Typical run with the test data copied to $HOME/KiwiTestData
 
 ```
-nextflow run hdzierz/VariantAnalysis/align.nf --input_dir '../KiwiTestData/' --genome '../KiwiTestData/kiwitest.fasta'
+./nextflow run hdzierz/VariantAnalysis/align.nf --input_dir '$HOME/KiwiTestData/' --genome '$HOME/KiwiTestData/kiwitest.fasta'
 ```
 
 

@@ -18,6 +18,10 @@ Generate a pipeline that handles raw reads and calculates variants in relation t
 
 Store results in Kaka
 
+## iRODS
+
+Meta data tag results using iRODS
+
 
 ## Automation
 
